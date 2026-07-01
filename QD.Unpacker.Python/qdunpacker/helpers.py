@@ -89,6 +89,34 @@ def read_string_list(stream: BinaryIO, encoding: str = "ascii", trim: bool = Tru
     return result
 
 
+def write_int16(stream: BinaryIO, value: int, big_endian: bool = False) -> None:
+    stream.write(struct.pack(">h" if big_endian else "<h", value))
+
+
+def write_int32(stream: BinaryIO, value: int, big_endian: bool = False) -> None:
+    stream.write(struct.pack(">i" if big_endian else "<i", value))
+
+
+def write_int64(stream: BinaryIO, value: int, big_endian: bool = False) -> None:
+    stream.write(struct.pack(">q" if big_endian else "<q", value))
+
+
+def write_uint16(stream: BinaryIO, value: int, big_endian: bool = False) -> None:
+    stream.write(struct.pack(">H" if big_endian else "<H", value))
+
+
+def write_uint32(stream: BinaryIO, value: int, big_endian: bool = False) -> None:
+    stream.write(struct.pack(">I" if big_endian else "<I", value))
+
+
+def write_uint64(stream: BinaryIO, value: int, big_endian: bool = False) -> None:
+    stream.write(struct.pack(">Q" if big_endian else "<Q", value))
+
+
+def write_single(stream: BinaryIO, value: float, big_endian: bool = False) -> None:
+    stream.write(struct.pack(">f" if big_endian else "<f", value))
+
+
 def copy_to(source: BinaryIO, target: BinaryIO) -> None:
     buffer_size = 32768
     while True:
